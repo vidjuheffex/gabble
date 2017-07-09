@@ -17,7 +17,16 @@ module.exports = function(sequelize, DataTypes) {
             }
         },{});
     User.associate = function(models){
-        User.hasMany(models.Post);
+        User.hasMany(models.Post, {
+            foreignKey: {
+                name: 'authorid'
+            } 
+        });
+        User.hasMany(models.Like, {
+            foreignKey: {
+                name: 'userid'
+            }
+        });
     };
                 
     return User;

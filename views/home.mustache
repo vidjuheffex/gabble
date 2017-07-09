@@ -17,7 +17,19 @@
                 {{author.username}}
             </div>
             <div>{{body}}</div>
-            <form action="/home/like" method="post">
+            {{#canDelete}}
+                <form action="/home/delete/{{id}}/{{authorid}}" method="post"> 
+                    <button type="submit">Delete</button>
+                </form>
+            {{/canDelete}}
+            <div>
+                <p>Liked by:</p>
+                {{#Likes}}
+                    <h5>{{user.username}}</h5>
+                {{/Likes}}
+                
+            </div>
+            <form action="/home/like/{{id}}" method="post">
                 <button type="submit">Like</button>
             </form>
         {{/posts}}

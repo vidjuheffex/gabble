@@ -12,7 +12,14 @@ module.exports = function(sequelize, DataTypes) {
 
     Post.associate = function(models) {
         Post.belongsTo(models.User, {as: 'author', foreignKey: 'authorid'});
-        Post.hasMany(models.Like);
+        Post.hasMany(models.Like, {
+            as: 'Likes',
+            foreignKey: {
+                name: 'postid'
+            },
+            onDelete: 'cascade',
+            hooks: 'true'
+        });
     };
     
   return Post;
