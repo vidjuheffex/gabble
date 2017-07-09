@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1>Welcome</h1>
+        <form action="/home/post" method="post">
+            <textarea name="body" placeholder="Leave your thought..." id="post_textarea"></textarea>
+            <button type="submit">Post</button>
+        </form>
+        <h2>Posts</h2>
+        {{#posts}}
+            <div>
+                {{author.username}}
+            </div>
+            <div>{{body}}</div>
+            <form action="/home/like" method="post">
+                <button type="submit">Like</button>
+            </form>
+        {{/posts}}
+    </body>
+</html>

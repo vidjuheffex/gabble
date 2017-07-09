@@ -1,0 +1,25 @@
+form {
+    min-width: 10rem;
+    background-color: rgb(50,50,50);
+    width: 25%;
+    padding: 1%;
+}
+
+form input, form button {
+    display: block;
+    width: 100%;
+}
+
+button {
+    background: white;
+    border: 1px solid white;
+}
+
+.warning {
+    color: red;
+    font-size: .74rem;
+}
+
+.off {
+    display: none;
+}

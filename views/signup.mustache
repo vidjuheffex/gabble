@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="login.css" rel=" stylesheet" type="text/css">
+    </head>
+    <body>
+        <form action="/signup" method="post">
+            <input id="username_input" name="username" type="text" value="" placeholder="Username"/>
+            <p class="warning off" id="userlength_warning">Username must be between 4 and 18 characters.</p>
+            <p class="warning off" id="usercontent_warning">Username may only contain letters and numbers</p>
+            <input id ="password_input"name="password" type="password" value="" placeholder="Password"/>
+            <p class="warning off" id="passwordlength_warning">Password must be between 4 and 18 characters.</p>
+            <input id="passwordConfirm_input" name="passwordConfirm" type="password" value="" placeholder="Confirm Password"/>
+            <p class="warning off" id="passmatch_warning">Passwords do not match</p>
+            <button type="submit">Create Account</button>
+        </form>
+        <p></p>
+    </body>
+</html>
+
+<script>
+ document.querySelector("#username_input").addEventListener("keyup", e => {
+     let lengthWarn = document.querySelector("#userlength_warning");
+     let contentWarn = document.querySelector("#usercontent_warning")
+     if(e.target.value.length < 4 || e.target.value.length > 17 ){
+         lengthWarn.classList.remove("off");
+     }
+     else {
+         lengthWarn.classList.add("off");   
+     }
+     if(!/^[a-zA-Z0-9]+$/.test(e.target.value)){
+         contentWarn.classList.remove("off");
+     }
+     else {
+         contentWarn.classList.add("off");
+     }
+ });
+
+ document.querySelector("#passwordConfirm_input").addEventListener("keyup", e => {
+     let matchWarn = document.querySelector("#passmatch_warning");
+     if(e.target.value != document.querySelector("#password_input").value){
+         matchWarn.classList.remove("off");
+     }
+     else {
+         matchWarn.classList.add("off");
+     }
+ })
+
+
+ 
+</script>
