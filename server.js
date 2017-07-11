@@ -42,6 +42,11 @@ app.get("/login" , (req,res) => {
   res.render("login", {});
 });
 
+app.get("/logout", (req,res) =>{
+  req.session.destroy();
+  res.redirect("/");
+});
+
 app.post("/login" , (req,res) => {
   models.User.findOne({
     where: {       
