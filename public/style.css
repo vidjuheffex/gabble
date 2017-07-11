@@ -1,14 +1,93 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
+html {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: url('bg.jpg')
 }
 
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 600px;
+  text-align: left;
+  display: inline-block;
+  background: white;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+body > * {
+    flex: 0 100%;
+}
+
+.post {
+  background: rgba(240,240,240,1);
+  background-image: ;
+  margin: 1rem;
+  padding: 1rem;
+    position: relative;
+    min-width: 400px;
+}
+
+.post h2:before {
+  content: '@';
+
+}
+
+.post h2 {
+  padding-bottom: .5rem;
+}
+
+.postBody {
+  font-size: 1.2rem;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.delete {
+    position: absolute;
+    top: 0px;
+    right: 0.5rem;
+    font-size: 2rem;
+    opacity: 0.25;
+    color: red;
+}
+
+.delete:hover {
+  opacity: 1;
+}
+
+.heart {
+  color: red;
+}
+
+.like {
+    margin: .15rem 0 0 0;
+    border: 1px solid grey;
+    display: inline-block;
+    padding: .15rem;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+
+.like:hover {
+    background: rgba(140,140,140,.2);
+}
+
+
+h5{
+  display: inline-block;
 }

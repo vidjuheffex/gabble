@@ -6,32 +6,38 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Welcome</h1>
+        <h1>Welcome {{user.username}}</h1>
+        <div class="gabbleInputWrapper">
         <form action="/home/post" method="post">
             <textarea name="body" placeholder="Leave your thought..." id="post_textarea"></textarea>
             <button type="submit">Post</button>
         </form>
+        </div>
         <h2>Posts</h2>
+        <div class="postWrapper">
         {{#posts}}
-            <div>
-                {{author.username}}
-            </div>
-            <div>{{body}}</div>
-            {{#canDelete}}
-                <form action="/home/delete/{{id}}/{{authorid}}" method="post"> 
-                    <button type="submit">Delete</button>
+            <div class="post">
+                <div>
+                    <h2>{{author.username}}</h2>
+                </div>
+                <div class="postBody">{{body}}</div>
+                {{#canDelete}}
+                    <form action="/home/delete/{{id}}/{{authorid}}" method="post" id="delete_{{id}}"> 
+                        <a href="" onclick="document.forms['delete_{{id}}'].submit(); return false;"><div class="delete">✘</div></a>
+                    </form>
+                {{/canDelete}}
+                <div class="postLikes">
+                    <p>Liked by:</p>
+                    {{#Likes}}
+                        <h5>{{user.username}}</h5>
+                    {{/Likes}}
+                    
+                </div>
+                <form action="/home/like/{{id}}" method="post" id="like_{{id}}">
+                    <a href="" onclick="document.forms['like_{{id}}'].submit(); return false;"><div class="like"><span class="heart">❤</span> Like This!</div></a>
                 </form>
-            {{/canDelete}}
-            <div>
-                <p>Liked by:</p>
-                {{#Likes}}
-                    <h5>{{user.username}}</h5>
-                {{/Likes}}
-                
             </div>
-            <form action="/home/like/{{id}}" method="post">
-                <button type="submit">Like</button>
-            </form>
         {{/posts}}
+        </div>
     </body>
 </html>

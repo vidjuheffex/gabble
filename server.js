@@ -19,15 +19,17 @@ app.use(express.static("public"));
 
 app.use(session({
   secret: 'sage is bomb',
-    cookie:{
-        maxAge: 900000
+  cookie:{
+    
+    
+    maxAge: 900000
   }
 }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req,res) => { 
-    res.redirect("home");
+  res.redirect("home");
 });
 
 app.use("/home", userRouter);
@@ -37,32 +39,38 @@ app.use("/home", userRouter);
 // })
 
 app.get("/login" , (req,res) => {
-    res.render("login", {});
+  res.render("login", {});
 });
 
 app.post("/login" , (req,res) => {
-    models.User.findOne({
-        where: {       
-            username: req.body.username
-        }
-    }).then( user => {
-        req.session.user = user;
-        req.session.loggedIn = true;
-        res.redirect("/home");
-    });
+  models.User.findOne({
+    where: {       
+      username: req.body.username
+    }
+  }).then( user => {
+    if (user != null && req.body.password == user.password){
+      req.session.user = user;
+      req.session.loggedIn = true;
+      res.redirect("/home");
+    }
+    else {
+      res.redirect("/login");
+    }
+  });
 });
 
 app.get("/signup", (req,res) => {
-    res.render("signup", {});
+  res.render("signup", {});
 });
 
 app.post("/signup", (req,res) => {
-    models.User.build({
-        username: req.body.username,
-        password: req.body.password
-    }).save().then( task => {
-        return res.redirect("/login");
-    } );
+  models.User.build({
+    username: req.body.username,
+    password: req.body.password
+  }).save().then( task => {
+    return res.redirect("/login");
+  } );
 });
 
 app.listen(port, ()=> console.log(`Listening on port ${port}.`));
+

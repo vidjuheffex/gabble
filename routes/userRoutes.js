@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
             }
             return e;
         });
-        return res.render("home", {posts: results});
+        return res.render("home", {user: req.session.user, posts: results});
     });
 });
 
@@ -56,6 +56,8 @@ router.post("/post", (req, res) => {
         authorid: req.session.user.id
     }).save().then(task => {
         res.redirect("/");
+    }).catch(err=>{
+      res.send(err);
     });
 });
 
